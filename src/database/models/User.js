@@ -7,11 +7,20 @@ const User = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     senha: {
         type: String,
         required: true
+    },
+    dataNascimento: {
+        type: String,
+        required: false
+    },
+    linkedin: {
+        type: String,
+        required: false
     }
 });
 

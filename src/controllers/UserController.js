@@ -41,5 +41,32 @@ module.exports = {
         }catch(err){
             console.log(err);
         }
+    },
+
+    async show(req, res) {
+        const { token } = req.query;
+
+        const id = await JWTConfig.decriptToken(token.split('Bearer ')[1]);
+
+        if(id.name === 'TokenExpiredError'){
+            return res.status(403).json({message: "Token is expired"});
+        }
+
+        const user = await User.findOne({_id: id}).select("-senha");
+        return res.status(200).json(user);
+    },
+
+    async update(req, res) {
+        const { token } = req.query;
+        const { nome, email, dataNascimento, linkedin } = req.body;
+
+        const id = await JWTConfig.decriptToken(token.split('Bearer ')[1]);
+
+        if(id.name === 'TokenExpiredError'){
+            return res.status(403).json({message: "Token is expired"});
+        }
+
+        const user = await User.findByIdAndUpdate({_id: id}, {nome, email, dataNascimento, linkedin});
+        return res.status(200).json(user);
     }
 }
