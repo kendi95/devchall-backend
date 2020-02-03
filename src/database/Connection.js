@@ -7,7 +7,7 @@ const connection = mongoose.connect(
     `mongodb+srv://${USER}:${PASSWORD}@cluster0-ehkhi.mongodb.net/test?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
     useCreateIndex: true
 }, (err) => {
     if(err){

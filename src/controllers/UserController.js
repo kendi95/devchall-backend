@@ -28,12 +28,12 @@ module.exports = {
         try{
             const user = await User.findOne({email});
             if(!user){
-                return res.status(404).json({error: "User not found."});
+                return res.status(401).json({error: "User not found."});
             }
 
             const compare = await bcrypt.compareSync(senha, user.senha);
             if(compare == false){
-                return res.status(404).json({error: "Invalid password."});
+                return res.status(401).json({error: "Invalid password."});
             }
             
             const token = await JWTConfig.generateToken(user._id);
