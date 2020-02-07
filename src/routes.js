@@ -11,6 +11,8 @@ route.post("/signin", UserController.index);
 route.get("/profile", UserController.show);
 route.put("/profile", UserController.update);
 
+route.patch("/upload_imageURL", UserController.uploadImageURL);
+
 route.get("/validated_token", JWTController.isTokenValideted);
 
 route.get("/confirm_email", RecoveryController.findByEmail);

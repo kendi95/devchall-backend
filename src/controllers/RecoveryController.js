@@ -1,5 +1,6 @@
 const User = require("../database/models/User");
 const bcrypt = require("bcryptjs");
+require("dotenv/config");
 
 module.exports = {
     async findByEmail(req, res) {
@@ -16,7 +17,7 @@ module.exports = {
     async resetPassword(req, res) {
         const { id } = req.query;
         const { senha } = req.body;
-        const salt = await bcrypt.genSaltSync(10);
+        const salt = await bcrypt.genSaltSync(process.env.SALT);
         const hash = await bcrypt.hashSync(senha, salt);
 
         try{

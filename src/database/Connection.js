@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
-
-const USER = "";
-const PASSWORD = "";
+require("dotenv/config");
 
 const connection = mongoose.connect(
-    `mongodb+srv://${USER}:${PASSWORD}@cluster0-ehkhi.mongodb.net/test?retryWrites=true&w=majority`, {
+    process.env.URL_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
